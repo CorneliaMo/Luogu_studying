@@ -13,10 +13,8 @@ int * MergeSort(int a[], int n)  //归并排序 时间复杂度 O(NlogN)
         memcpy(&i, &a[0], (n/2)*sizeof(int));
         memcpy(&j, &a[n/2], (n-n/2)*sizeof(int));
 
-        int *tmp1;
-        int *tmp2;
-        tmp1 = MergeSort(i, n/2);
-        tmp2 = MergeSort(j, n-n/2);
+        int *tmp1 = MergeSort(i, n/2);
+        int *tmp2 = MergeSort(j, n-n/2);
         memcpy(&i, tmp1, n/2*sizeof(int));
         memcpy(&j, tmp2, (n-n/2)*sizeof(int));
         free(tmp1);
@@ -25,11 +23,11 @@ int * MergeSort(int a[], int n)  //归并排序 时间复杂度 O(NlogN)
         //归并数组
         int r[n];
         int index1=0; int index2=0;
-        for (int loop;loop<n;loop++)  //循环归并
+        for (int loop=0;loop<n;loop++)  //循环归并
         {
-            if (index1<n/2&&index2<n-n/2)        //判断数列为空
+            if (index1<(n/2)&&index2<(n-n/2))        //判断数列为空
             {
-                if (i[index1]>j[index2])
+                if (i[index1]>=j[index2])
                 {
                     r[loop] = j[index2];
                     index2++;
@@ -37,13 +35,6 @@ int * MergeSort(int a[], int n)  //归并排序 时间复杂度 O(NlogN)
                 {
                     r[loop] = i[index1];
                     index1++;
-                }else if(i[index1]=j[index2])
-                {
-                    r[loop] = i[index1];
-                    r[loop+1] = j[index2];
-                    index1++;
-                    index2++;
-                    loop++;
                 }
             }else if(index1==n/2)             //r1数列为空
             {
@@ -53,7 +44,7 @@ int * MergeSort(int a[], int n)  //归并排序 时间复杂度 O(NlogN)
                     index2++;
                 }
                 loop = n;//退出循环
-            }else if(index2==n-n/2)             //r2数列为空
+            }else if(index2==(n-n/2))             //r2数列为空
             {
                 for (int loop2=loop;loop2<n;loop2++)
                 {
@@ -74,6 +65,8 @@ int * MergeSort(int a[], int n)  //归并排序 时间复杂度 O(NlogN)
         return result;
     }
 }
+
+
 
 int main(void)
 {
