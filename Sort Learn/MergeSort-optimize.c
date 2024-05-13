@@ -5,9 +5,9 @@
 
 int * MergeSort(int *a, int n)  //归并排序 时间复杂度 O(NlogN)
 {
-    int * result = (int *)malloc(n*sizeof(int)); //用于return数组的临时变量
     if (n>1)
     {
+        int * result = (int *)malloc(n*sizeof(int)); //用于return数组的临时变量
         //分割数组
         int *i = a; //0 -> n/2-1 有n/2个
         int *j = a+n/2; //n/2 -> n-1 有n-n/2个
@@ -49,7 +49,9 @@ int * MergeSort(int *a, int n)  //归并排序 时间复杂度 O(NlogN)
             }
         }
         //返回并释放
-        return result;
+        memcpy(a, result, n*sizeof(unsigned int));
+        free(result);
+        return a;
     }else
     {
         //memcpy(result, a, n*sizeof(int));
@@ -67,7 +69,7 @@ int main(void)
     int n = 0;
     fscanf(fp, "%d", &n);
     printf("Number of data : %d\n\nReading...\n", n);
-    int * list = malloc(n*sizeof(int));
+    int * list = (int *)malloc(n*sizeof(int));
 
     start = clock();
     for (int i=0;i<n;i++)

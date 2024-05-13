@@ -46,7 +46,7 @@ int * QuickSort(int *a, int n) //快速排序 平均时间复杂度：O(N*logN)
             right = QuickSort(right, len_r);
         }
         //合并两堆
-        int * result = malloc(n*sizeof(int));
+        int * result = (int *)malloc(n*sizeof(int));
         memcpy(result, left, len_l*sizeof(int));
         *(result+len_l) = key;
         memcpy(result+len_l+1, right, len_r*sizeof(int));
@@ -66,11 +66,11 @@ int * QuickSort(int *a, int n) //快速排序 平均时间复杂度：O(N*logN)
 int main(void)
 {
     FILE * fp;
-    fp = fopen("C:\\numbers.txt", "r");
+    fp = fopen("E:\\C learning\\numbers.txt", "r");
     int n = 0;
     fscanf(fp, "%d", &n);
     printf("Number of data : %d\n\n", n);
-    int * list = malloc(n*sizeof(int));
+    int * list = (int *)malloc(n*sizeof(int));
 
     for (int i=0;i<n;i++)
     {
